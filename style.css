@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #020202;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #020202;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header nav ul li a {
+    text-decoration: none;
+    color: #b8b8b8;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.header nav ul li a.active,
+.header nav ul li a:hover {
+    color: #020202;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.header .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.overview h1 {
+    font-size: 36px;
+    color: #020202;
+}
+
+.overview p {
+    font-size: 18px;
+    color: #b8b8b8;
+    margin-bottom: 20px;
+}
+
+.health-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lung-image {
+    position: relative;
+    width: 60%;
+}
+
+.lung-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.lung-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #020202;
+}
+
+.heart-rate {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.heart-ring {
+    background-color: #0063f2;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.appointment-info p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #020202;
+}
+
+#day-time {
+    font-size: 18px;
+    color: #0063f2;
+}
+
+.vitals {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.vital-item {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vital-item p:first-child {
+    font-size: 16px;
+    color: #020202;
+}
+
+.vital-item p:last-child {
+    font-size: 24px;
+    color: #0063f2;
+}
+
+.medication {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+}
+
+.medication-card,
+.respiratory-card,
+.scan-Osteoporosis,
+.scan-cardiology {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.medication-card h2,
+.respiratory-card h2,
+.scan-Osteoporosis h2,
+.scan-cardiology h2 {
+    color: #020202;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    background-color: #0063f2;
+    height: 100%;
+}
+
+.percentage {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    color: #0063f2;
+}
+
+.consultation-button {
+    /* margin-top: 1px; */
+    text-align: right;
+}
+
+.consultation-button button {
+    background-color: #0063f2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.consultation-button button:hover {
+    background-color: #004bb7;
+}
+
+
+/* Media Queries for Screens */
+@media (max-width: 420px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 0;
+    }
+
+    .header .logo {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .header nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .header nav ul li a {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .header .profile img {
+        width: 30px;
+        height: 30px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .overview h1 {
+        font-size: 22px;
+    }
+
+    .overview p {
+        font-size: 14px;
+    }
+
+    .health-details {
+        flex-direction: column;
+    }
+
+    .lung-image {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .lung-info {
+        position: static;
+        margin-top: 10px;
+    }
+
+    .heart-rate {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vitals {
+        flex-direction: column;
+    }
+
+    .vital-item {
+        padding: 8px 15px;
+    }
+
+    .medication {
+        grid-template-columns: 1fr;
+    }
+
+    .medication-card,
+    .respiratory-card,
+    .scan-cardiology {
+        padding: 15px;
+    }
+
+    .consultation-button {
+        text-align: center;
+    }
+
+    .osteoporosis-card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .osteoporosis-card p {
+        font-size: 16px;
+    }
+
+    .osteoporosis-card button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .progress-bar {
+        height: 8px;
+    }
+
+    .percentage {
+        font-size: 14px;
+        top: 8px;
+    }
+}
+

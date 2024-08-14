@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProHealth - Patient Health Overview</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">Saanjavni</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Overview</a></li>
+                    <li><a href="docoument.html">Document</a></li>
+                    <li><a href="contact_us.html">contact-us</a></li>
+                    <li><a href="labs.html">Labs</a></li>
+                </ul>
+            </nav>
+            <div class="profile">
+                <img src="image2.jpg" alt="Profile">
+            </div>
+        </header>
+        <main>
+            <!-- Overview Section -->
+            <section class="overview">
+                <h1>Overview</h1>
+                <p>Patient Health</p>
+                <div class="health-details">
+                    <div class="lung-image">
+                        <!-- <img src="image2.jpg" alt="Lungs"> -->
+                        <div class="lung-info">
+                            <div class="heart-rate">
+                                <div class="heart-ring">87%</div>
+                                <div class="heart-details">
+                                    <p>Heart Rate</p>
+                                    <p>98.5%</p>
+                                </div>
+                            </div>
+                            <div class="appointment-info">
+                                <p id="day-time"></p>
+                                <p>Cardiology Doctor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vitals">
+                        <div class="vital-item">
+                            <p>Heart Rate</p>
+                            <p>110 bpm</p>
+                        </div>
+                        <div class="vital-item">
+                            <p>Temperature</p>
+                            <p>34.7°C</p>
+                        </div>
+                        <div class="vital-item">
+                            <p>Blood</p>
+                            <p>98%</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Medication Section -->
+            <section class="medication">
+                <div class="medication-card">
+                    <h2>Paracetamol</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;"></div>
+                    </div>
+                    <p class="percentage">25%</p>
+                </div>
+                <div class="respiratory-card">
+                    <h2>Respiratory</h2>
+                    <p>523</p>
+                    <small>Influenza</small>
+                </div>
+                <div class="scan-cardiology">
+                    <h2>Scan Cardiology</h2>
+                    <p>1,276</p>
+                    <small>PC</small>
+                </div>
+
+                <div class="scan-Osteoporosis">
+                    <h2>Osteoporosis</h2>
+                    <p>1234</p>
+                    <small>PC</small>
+                </div>
+                
+                
+            </section>
+
+            <!-- Consultation Button -->
+            <div class="consultation-button">
+                <button>Consultation</button>
+            </div>
+
+            
+            
+        </main>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
