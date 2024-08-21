@@ -3,102 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProHealth - Patient Health Overview</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Saanjavni</title>
+    <style>
+        :root {
+            --primary-color: #0063f2;
+            --text-color: #020202;
+            --bg-color: #f4f7f9;
+            --white: #ffffff;
+            --gray: #4a4a4a;
+            --light-gray: #b8b8b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            padding: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a.active, nav ul li a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        main {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        p, ul {
+            color: var(--gray);
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--light-gray);
+        }
+
+        /* Overview Page Styles */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .health-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lung-image {
+            position: relative;
+            width: 60%;
+        }
+
+        .lung-image img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .lung-info {
+            position-try: 2;
+            margin-top: 30px;
+            top: 20px;
+            left: 20px;
+            color: var(--text-color);
+        }
+
+        .heart-rate {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .heart-ring {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .vitals {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .vital-item {
+            background-color: var(--white);
+            padding: 10px 20px;
+            text-decoration: #ffffff;
+            color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .medication {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 20px;
+        }
+
+        .medication-card,
+        .respiratory-card,
+        .scan-Osteoporosis,
+        .scan-cardiology {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar .progress {
+            background-color: var(--primary-color);
+            height: 100%;
+        }
+
+        .percentage {
+            position: absolute;
+            top: 170px;
+            right: 30px;
+            font-size: 18px;
+
+            color: var(--primary-color);
+        }
+
+        .consultation-button {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .consultation-button button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .consultation-button button:hover {
+            background-color: #004bb7;
+        }
+
+        /* Contact Us Page Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: var(--text-color);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #004bbf;
+        }
+
+        /* Hamburger Menu Styles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: flex;
+                order: 1;
+            }
+
+            .logo {
+                order: 2;
+            }
+
+            .profile {
+                order: 3;
+            }
+
+            nav {
+                flex-basis: 100%;
+                order: 4;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .profile {
+                margin-top: 20px;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p, ul {
+                font-size: 16px;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .health-details {
+                flex-direction: column;
+            }
+
+            .lung-image {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .vitals {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-left: 20px;
+            }
+
+            .vital-item {
+                flex-basis: 88%;
+            }
+
+            .medication {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .consultation-button {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="logo">Saanjavni</div>
-            <nav>
+            <nav id="nav">
                 <ul>
-                    <li><a href="index.html" class="active">Overview</a></li>
-                    <li><a href="docoument.html">Document</a></li>
-                    <li><a href="contact_us.html">contact-us</a></li>
-                    <li><a href="labs.html">Labs</a></li>
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#labs">Labs</a></li>
+                    <li><a href="#document">Document</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="profile">
-                <img src="image2.jpg" alt="Profile">
+                <img src="logo2.jpg" alt="Profile">
             </div>
         </header>
-        <main>
-            <!-- Overview Section -->
-            <section class="overview">
-                <h1>Overview</h1>
-                <p>Patient Health</p>
-                <div class="health-details">
-                    <div class="lung-image">
-                        <!-- <img src="image2.jpg" alt="Lungs"> -->
-                        <div class="lung-info">
-                            <div class="heart-rate">
-                                <div class="heart-ring">87%</div>
-                                <div class="heart-details">
-                                    <p>Heart Rate</p>
-                                    <p>98.5%</p>
+
+        <main id="overview">
+            <section class="overview-grid">
+                <div class="overview">
+                    <h1>Saanjavni App Overview</h1>
+                    <p>Your Health, One Tap Away</p>
+                    <div class="health-details">
+                        <div class="lung-image">
+                            <img src="0009.jpg" alt="Saanjavni Features">
+                            <div class="lung-info">
+                                <div class="heart-rate">
+                                    <div class="heart-ring">Secure</div>
+                                    <div class="heart-details">
+                                        <p>Biometric Security</p>
+                                        <p>Face & Fingerprint</p>
+                                    </div>
+                                </div>
+                                <div class="appointment-info">
+                                    <p id="day-time"></p>
+                                    <p>Personal & Family Medical Info</p>
                                 </div>
                             </div>
-                            <div class="appointment-info">
-                                <p id="day-time"></p>
-                                <p>Cardiology Doctor</p>
+                        </div>
+                        <div class="vitals">
+                            <div class="vital-item">
+                                <p>Emergency Access</p>
+                                <p>24/7 Availability</p>
+                            </div>
+                            <div class="vital-item">
+                                <p>Health Tracking</p>
+                                <p>Real-time Updates</p>
+                            </div>
+                            <div class="vital-item">
+                                <p>User Dashboard</p>
+                                <p>Personalized Insights</p>
                             </div>
                         </div>
                     </div>
-                    <div class="vitals">
-                        <div class="vital-item">
-                            <p>Heart Rate</p>
-                            <p>110 bpm</p>
+                </div>
+                <div class="medication">
+                    <div class="medication-card">
+                        <h2>Medication Reminders</h2>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
                         </div>
-                        <div class="vital-item">
-                            <p>Temperature</p>
-                            <p>34.7°C</p>
-                        </div>
-                        <div class="vital-item">
-                            <p>Blood</p>
-                            <p>98%</p>
-                        </div>
+                        <p class="percentage">Next Dose in 2 hours</p>
+                    </div>
+                    <div class="respiratory-card">
+                        <h2>Health Records</h2>
+                        <p>Track & Store</p>
+                        <small>All Medical Data</small>
+                    </div>
+                    <div class="scan-cardiology">
+                        <h2>Doctor Consultations</h2>
+                        <p>Video & In-Person</p>
+                        <small>Connect Anytime</small>
+                    </div>
+                    <div class="scan-Osteoporosis">
+                        <h2>Medical Insights</h2>
+                        <p>Data-driven Decisions</p>
+                        <small>Better Health Outcomes</small>
                     </div>
                 </div>
             </section>
-
-            <!-- Medication Section -->
-            <section class="medication">
-                <div class="medication-card">
-                    <h2>Paracetamol</h2>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 25%;"></div>
-                    </div>
-                    <p class="percentage">25%</p>
-                </div>
-                <div class="respiratory-card">
-                    <h2>Respiratory</h2>
-                    <p>523</p>
-                    <small>Influenza</small>
-                </div>
-                <div class="scan-cardiology">
-                    <h2>Scan Cardiology</h2>
-                    <p>1,276</p>
-                    <small>PC</small>
-                </div>
-
-                <div class="scan-Osteoporosis">
-                    <h2>Osteoporosis</h2>
-                    <p>1234</p>
-                    <small>PC</small>
-                </div>
-                
-                
-            </section>
-
-            <!-- Consultation Button -->
             <div class="consultation-button">
-                <button>Consultation</button>
+                <button>Get Started with Saanjavni</button>
             </div>
-
-            
-            
         </main>
+        
+                                 <!-- document section  -->
+        <main id="document" style="display: none;">
+            <h1>Documentation</h1>
+            
+            <section id="app-details">
+                <h2>About Saanjavni</h2>
+                <p>Saanjavni is a comprehensive medical information app designed to simplify healthcare management. It offers features such as biometric registration, personal and family medical information management, emergency access, and a user-friendly dashboard.</p>
+            </section>
+
+            <section id="creators">
+                <h2>Creators</h2>
+                <p>This app was developed by a dedicated team of engineers and developers. Our goal is to revolutionize how medical information is managed, making it more accessible and secure.</p>
+                <ul>
+                    <li><strong>Team Leader:</strong> Sanju</li>
+                    <li><strong>Developers:</strong> [Team Member 1], [Team Member 2], [Team Member 3], [Team Member 4]</li>
+                </ul>
+            </section>
+
+            <section id="motive">
+                <h2>Our Motive</h2>
+                <p>The motive behind Saanjavni is to provide a platform that empowers users to take control of their health information. By integrating biometric security and comprehensive medical data, we aim to make healthcare more efficient and user-centered.</p>
+            </section>
+
+            <section id="features">
+                <h2>Features</h2>
+                <ul>
+                    <li>Biometric registration with face and fingerprint recognition</li>
+                    <li>Personal and family medical information management</li>
+                    <li>Emergency access features for critical situations</li>
+                    <li>User-friendly dashboard inspired by Snapchat's design</li>
+                </ul>
+            </section>
+        </main>
+                       <!-- contact section  -->
+        <main id="contact-us" style="display: none;">
+            <h1>Contact Us</h1>
+            <p>If you have any questions, feedback, or inquiries, please feel free to reach out to us using the form below. We would love to hear from you!</p>
+            
+            <form action="#" method="post">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </main>
+
+                                   <!-- labs section  -->
+
+        <main id="labs" style="display: none;">
+            <h1>Labs & Data Analysis</h1>
+            <p>Welcome to the Labs section, where we analyze various healthcare and social data. Below are some of the key data points we are currently studying.</p>
+
+            <section class="data-section">
+                <h2>Medicine Usage in Different Areas</h2>
+                <p>We analyze the usage patterns of various medicines across different regions to understand trends and improve distribution strategies.</p>
+                <ul>
+                    <li><strong>Region A:</strong> 75% of the population uses Paracetamol.</li>
+                    <li><strong>Region B:</strong> 60% of the population prefers Ibuprofen.</li>
+                    <li><strong>Region C:</strong> 40% of the population is prescribed Antibiotics regularly.</li>
+                </ul>
+            </section>
+
+            <section class="data-section">
+                <h2>Accident Statistics</h2>
+                <p>We track and analyze accident data to help implement better safety measures and reduce the number of incidents.</p>
+                <ul>
+                    <li><strong>City X:</strong> 200 accidents reported in the last month.</li>
+                    <li><strong>City Y:</strong> 150 accidents reported, with a 10% increase compared to the previous month.</li><li><strong>City Z:</strong> 100 accidents reported, with most incidents involving motorcycles.</li>
+                </ul>
+            </section>
+
+            <section class="data-section">
+                <h2>Health Condition Prevalence</h2>
+                <p>This section covers data on the prevalence of different health conditions in various regions.</p>
+                <ul>
+                    <li><strong>Diabetes:</strong> 25% prevalence in Region A.</li>
+                    <li><strong>Hypertension:</strong> 30% prevalence in Region B.</li>
+                    <li><strong>Respiratory Issues:</strong> 20% prevalence in Region C, particularly in areas with high pollution levels.</li>
+                </ul>
+            </section>
+
+            <section class="data-section">
+                <h2>Vaccination Coverage</h2>
+                <p>We monitor vaccination coverage to ensure that target populations are adequately immunized against preventable diseases.</p>
+                <ul>
+                    <li><strong>COVID-19 Vaccination:</strong> 85% of adults in Region A are fully vaccinated.</li>
+                    <li><strong>Polio Vaccination:</strong> 95% coverage in Region B.</li>
+                    <li><strong>Hepatitis B Vaccination:</strong> 78% coverage in Region C.</li>
+                </ul>
+            </section>
+
+            <section class="data-section">
+                <h2>Hospital Admissions</h2>
+                <p>Data on hospital admissions helps us understand healthcare demand and improve resource allocation.</p>
+                <ul>
+                    <li><strong>Hospital X:</strong> 300 admissions last month, with 20% related to respiratory issues.</li>
+                    <li><strong>Hospital Y:</strong> 250 admissions, with a spike in emergency cases.</li>
+                    <li><strong>Hospital Z:</strong> 200 admissions, with 15% of cases related to cardiovascular issues.</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Saanjavni. All rights reserved.</p>
+        </footer>
     </div>
-    <script src="scripts.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const mainSections = document.querySelectorAll('main');
+            const menuToggle = document.getElementById('menu-toggle');
+            const nav = document.getElementById('nav');
+
+            // Hamburger menu toggle
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    mainSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    document.getElementById(targetId).style.display = 'block';
+
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Close menu on link click (for mobile)
+                    nav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+
+            // Set current date and time for the appointment info
+            function updateDateTime() {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                document.getElementById('day-time').textContent = now.toLocaleDateString('en-US', options);
+            }
+
+            updateDateTime();
+            setInterval(updateDateTime, 60000); // Update every minute
+        });
+    </script>
 </body>
 </html>
