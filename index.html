@@ -177,6 +177,17 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .chat-bot button{
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
 
         .medication {
             display: grid;
@@ -294,6 +305,8 @@
             transition: all 0.3s ease;
         }
 
+
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .header {
@@ -387,6 +400,95 @@
                 text-align: center;
             }
         }
+
+
+
+        #chat{
+            display: flex;
+        }
+
+
+        #chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+#chat-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#input-container button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-message, .ai-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.user-message {
+    background-color: #e6f2ff;
+    text-align: right;
+}
+
+.ai-message {
+    background-color: #f0f0f0;
+}
+
+        /* Media Queries for Responsive Design */
+        @media screen and (max-width: 768px) {
+            #chat-wrapper {
+                max-width: 100%;
+                height: 400px;
+                border-radius: 0;
+            }
+            #chat-container {
+                padding: 15px;
+            }
+            #input-container {
+                padding: 5px;
+            }
+            button {
+                padding: 8px 16px;
+            }
+            #user-input {
+                padding: 8px;
+                margin-right: 5px;
+            }
+        }
+        
+        
     </style>
 </head>
 <body>
@@ -401,20 +503,20 @@
             <nav id="nav">
                 <ul>
                     <li><a href="#overview" class="active">Overview</a></li>
-                    <li><a href="#labs">Labs</a></li>
+                    <li><a href="#chat">Chat</a></li>
                     <li><a href="#document">Document</a></li>
                     <li><a href="#contact-us">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="profile">
-                <img src="logo2.jpg" alt="Profile">
+                <img src="logo.jpg" alt="Profile">
             </div>
         </header>
 
         <main id="overview">
             <section class="overview-grid">
                 <div class="overview">
-                    <h1>Saanjavni App Overview</h1>
+                    <h1>Saanjavni , Your Health Guide</h1>
                     <p>Your Health, One Tap Away</p>
                     <div class="health-details">
                         <div class="lung-image">
@@ -432,7 +534,12 @@
                                     <p>Personal & Family Medical Info</p>
                                 </div>
                             </div>
+                            <div class="chat-bot">
+                                <button onclick="showChatSection()">Chat with our AI</button>
+                            </div>
                         </div>
+
+                        
                         <div class="vitals">
                             <div class="vital-item">
                                 <p>Emergency Access</p>
@@ -445,10 +552,13 @@
                             <div class="vital-item">
                                 <p>User Dashboard</p>
                                 <p>Personalized Insights</p>
+                                
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+
                 <div class="medication">
                     <div class="medication-card">
                         <h2>Medication Reminders</h2>
@@ -478,8 +588,20 @@
                 <button>Get Started with Saanjavni</button>
             </div>
         </main>
-        
-                                 <!-- document section  -->
+
+                         <!-- chat  -->
+
+        <main id="chat" style="display: none;">
+            <h1>Chat with our AI</h1>
+            <div id="chat-wrapper">
+                <div id="chat-container"></div>
+                <div id="input-container">
+                    <input type="text" id="user-input" placeholder="Type your message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </main>
+        <!-- document section  -->
         <main id="document" style="display: none;">
             <h1>Documentation</h1>
             
@@ -531,62 +653,6 @@
             </form>
         </main>
 
-                                   <!-- labs section  -->
-
-        <main id="labs" style="display: none;">
-            <h1>Labs & Data Analysis</h1>
-            <p>Welcome to the Labs section, where we analyze various healthcare and social data. Below are some of the key data points we are currently studying.</p>
-
-            <section class="data-section">
-                <h2>Medicine Usage in Different Areas</h2>
-                <p>We analyze the usage patterns of various medicines across different regions to understand trends and improve distribution strategies.</p>
-                <ul>
-                    <li><strong>Region A:</strong> 75% of the population uses Paracetamol.</li>
-                    <li><strong>Region B:</strong> 60% of the population prefers Ibuprofen.</li>
-                    <li><strong>Region C:</strong> 40% of the population is prescribed Antibiotics regularly.</li>
-                </ul>
-            </section>
-
-            <section class="data-section">
-                <h2>Accident Statistics</h2>
-                <p>We track and analyze accident data to help implement better safety measures and reduce the number of incidents.</p>
-                <ul>
-                    <li><strong>City X:</strong> 200 accidents reported in the last month.</li>
-                    <li><strong>City Y:</strong> 150 accidents reported, with a 10% increase compared to the previous month.</li><li><strong>City Z:</strong> 100 accidents reported, with most incidents involving motorcycles.</li>
-                </ul>
-            </section>
-
-            <section class="data-section">
-                <h2>Health Condition Prevalence</h2>
-                <p>This section covers data on the prevalence of different health conditions in various regions.</p>
-                <ul>
-                    <li><strong>Diabetes:</strong> 25% prevalence in Region A.</li>
-                    <li><strong>Hypertension:</strong> 30% prevalence in Region B.</li>
-                    <li><strong>Respiratory Issues:</strong> 20% prevalence in Region C, particularly in areas with high pollution levels.</li>
-                </ul>
-            </section>
-
-            <section class="data-section">
-                <h2>Vaccination Coverage</h2>
-                <p>We monitor vaccination coverage to ensure that target populations are adequately immunized against preventable diseases.</p>
-                <ul>
-                    <li><strong>COVID-19 Vaccination:</strong> 85% of adults in Region A are fully vaccinated.</li>
-                    <li><strong>Polio Vaccination:</strong> 95% coverage in Region B.</li>
-                    <li><strong>Hepatitis B Vaccination:</strong> 78% coverage in Region C.</li>
-                </ul>
-            </section>
-
-            <section class="data-section">
-                <h2>Hospital Admissions</h2>
-                <p>Data on hospital admissions helps us understand healthcare demand and improve resource allocation.</p>
-                <ul>
-                    <li><strong>Hospital X:</strong> 300 admissions last month, with 20% related to respiratory issues.</li>
-                    <li><strong>Hospital Y:</strong> 250 admissions, with a spike in emergency cases.</li>
-                    <li><strong>Hospital Z:</strong> 200 admissions, with 15% of cases related to cardiovascular issues.</li>
-                </ul>
-            </section>
-        </main>
-
         <footer class="footer">
             <p>&copy; 2024 Saanjavni. All rights reserved.</p>
         </footer>
@@ -594,49 +660,104 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav ul li a');
-            const mainSections = document.querySelectorAll('main');
-            const menuToggle = document.getElementById('menu-toggle');
-            const nav = document.getElementById('nav');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const mainSections = document.querySelectorAll('main');
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav');
 
-            // Hamburger menu toggle
-            menuToggle.addEventListener('click', function() {
-                nav.classList.toggle('active');
-                this.classList.toggle('active');
-            });
+    // Hamburger menu toggle
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        this.classList.toggle('active');
+    });
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    
-                    mainSections.forEach(section => {
-                        section.style.display = 'none';
-                    });
-
-                    document.getElementById(targetId).style.display = 'block';
-
-                    navLinks.forEach(navLink => {
-                        navLink.classList.remove('active');
-                    });
-                    this.classList.add('active');
-
-                    // Close menu on link click (for mobile)
-                    nav.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                });
-            });
-
-            // Set current date and time for the appointment info
-            function updateDateTime() {
-                const now = new Date();
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                document.getElementById('day-time').textContent = now.toLocaleDateString('en-US', options);
-            }
-
-            updateDateTime();
-            setInterval(updateDateTime, 60000); // Update every minute
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            showSection(targetId);
         });
+    });
+
+    // Set current date and time for the appointment info
+    function updateDateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        document.getElementById('day-time').textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 60000); // Update every minute
+});
+
+function showSection(sectionId) {
+    const mainSections = document.querySelectorAll('main');
+    mainSections.forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(navLink => {
+        navLink.classList.remove('active');
+    });
+    document.querySelector(`nav ul li a[href="#${sectionId}"]`).classList.add('active');
+}
+
+function showChatSection() {
+    showSection('chat');
+}
+
+// Chat AI functionality
+const API_KEY = 'AIzaSyBFgYfaEJ5ymvu11EYF2myW95OKFyJMMFw'; 
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+async function sendMessage() {
+    const userInput = document.getElementById('user-input');
+    const chatContainer = document.getElementById('chat-container');
+
+    const userMessage = userInput.value.trim();
+    if (!userMessage) return;
+
+    chatContainer.innerHTML += `<p class="user-message"><strong>You:</strong> ${userMessage}</p>`;
+    userInput.value = '';
+
+    try {
+        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: userMessage
+                    }]
+                }]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
+        const data = await response.json();
+        const aiResponse = data.candidates[0].content.parts[0].text;
+        chatContainer.innerHTML += `<p class="ai-message"><strong>AI:</strong> ${aiResponse}</p>`;
+    } catch (error) {
+        console.error('Error:', error);
+        chatContainer.innerHTML += `<p class="ai-message"><strong>Error:</strong> Failed to get a response from AI</p>`;
+    }
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Add event listener for pressing Enter in the input field
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
     </script>
 </body>
 </html>
