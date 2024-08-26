@@ -657,7 +657,7 @@
             <p>&copy; 2024 Saanjavni. All rights reserved.</p>
         </footer>
     </div>
-
+    <script src="config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('nav ul li a');
@@ -709,7 +709,7 @@ function showChatSection() {
 }
 
 // Chat AI functionality
-const API_KEY = 'AIzaSyBFgYfaEJ5ymvu11EYF2myW95OKFyJMMFw'; 
+const API_KEY = config.API_KEY; 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 async function sendMessage() {
